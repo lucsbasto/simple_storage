@@ -1,0 +1,16 @@
+{
+  "name": "smart_contract",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "repository": "https://github.com/lucsbasto/smart_contract",
+  "author": "Lucas <lucsbasto@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "compile": "solcjs --bin --abi --include-path node_modules/ --base-path . -o . SimpleStorage.sol"
+  },
+  "dependencies": {
+    "ethers": "^5.7.2",
+    "solc": "^0.8.17"
+  }
+}
