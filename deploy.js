@@ -16,7 +16,10 @@ const main = async () => {
   const factory = new ethers.ContractFactory(abi, bin, wallet);
   console.log("Deploying contract...");
   const contract = await factory.deploy();
+  const transactionReceipt = await contract.deployTransaction.wait(1);
   console.log(`Contract deployed to ${contract.address}`);
+  console.log(`Deployment took ${transactionReceipt.gasUsed} gas`);
+  console.log(`Transaction hash: ${transactionReceipt.transactionHash}`);
 };
 
 const runMain = async () => {
