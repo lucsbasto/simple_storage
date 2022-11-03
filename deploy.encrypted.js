@@ -6,8 +6,13 @@ dotenv.config();
 const main = async () => {
   //http://localhost:7545
   const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL);
-  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+  const encryptJson = fs.readFileSync("./.encryptedKey.json", "utf-8");
 
+  let wallet = new ethers.Wallet.fromEncryptedJsonSync(
+    encryptJson,
+    process.env.PRIVATE_KEY_PASSWORD
+  );
+  wallet = wallet.connect(provider);
   const abi = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.abi", "utf-8");
   const bin = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.bin", "utf-8");
 
